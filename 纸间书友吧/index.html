@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>纸间书友吧</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./font_4013428_fi9a2xy7j/iconfont.css">
+    <script type="text/javascript" src="func.js"></script>
+</head>
+<body>
+    <div id="box">
+        <h3 class=".h_title">
+            <marquee behavior="scroll" direction="left">hello,欢迎来到纸间书友吧~~~</marquee>
+        </h3>
+    </div>
+
+    <div class="shell">
+
+        <div class="container a-container" id="a-container">
+            <form action="SignIn.php" method="post" class="form" id="a-form">
+                <h2 class="form_title title">创建账号</h2>
+                <div class="form_icons">
+                    <i class="iconfont icon-yonghu"></i>
+                    <i class="iconfont icon-weixin"></i>
+                    <i class="iconfont icon-youxiang"></i>
+                </div>
+                <span class="form_span">注册您的专属账号</span>
+                <input type="text" class="form_input" placeholder="Name" name="s_name">
+                <input type="text" class="form_input" placeholder="Email" name="s_Email">
+                <input type="password" class="form_input" placeholder="密码" name="s_pwd">
+                <input type="password" class="form_input" placeholder="确认密码" name="s_pwd2">
+                <button class="form_button button submit" type="submit" name="SignIn">SIGN UP</button>
+            </form>
+        </div>
+
+        <div class="container b-container" id="b-container">
+            <form action="Login.php" method="get" class="form" id="b-form">
+                <h2 class="form_title title">登入账号</h2>
+                <div class="form_icons">
+                    <i class="iconfont icon-yonghu"></i>
+                    <i class="iconfont icon-weixin"></i>
+                    <i class="iconfont icon-youxiang"></i>
+                </div>
+                <span class="form_span">选择登录方式</span>
+                <input type="text" class="form_input" placeholder="Name/Email" name="L_name">
+                <input type="password" class="form_input" placeholder="Password" name="L_pwd">
+                <a class="form_link">忘记密码？</a>
+                <button class="form_button button submit" type="submit" id="Login">Login</button>
+            </form>
+        </div>
+
+        <div class="switch" id="switch-cnt">
+            <div class="switch_circle"></div>
+            <div class="switch_circle switch_circle-t"></div>
+            <div class="switch_container" id="switch-c1">
+                <h2 class="switch_title title" style="letter-spacing: 0;">Welcome Back！</h2>
+                <p class="switch_description description">已经有账号了嘛，去登入账号吧！！！</p>
+                <button class="switch_button button switch-btn">Login</button>
+            </div>
+
+            <div class="switch_container is-hidden" id="switch-c2">
+                <h2 class="switch_title title" style="letter-spacing: 0;">Hello Friend！</h2>
+                <p class="switch_description description">去注册一个账号，加入书友吧！</p>
+                <button class="switch_button button switch-btn">SIGN UP</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let switchCtn = document.querySelector("#switch-cnt");
+    let switchC1 = document.querySelector("#switch-c1");
+    let switchC2 = document.querySelector("#switch-c2");
+    let switchCircle = document.querySelectorAll(".switch_circle");
+    let switchBtn = document.querySelectorAll(".switch-btn");
+    let aContainer = document.querySelector("#a-container");
+    let bContainer = document.querySelector("#b-container");
+    let allButtons = document.querySelectorAll(".submit");
+
+    let getButtons = (e) => e.preventDefault();
+    let changeForm = (e) => {
+        // 修改类名
+        switchCtn.classList.add("is-gx");
+        setTimeout(function () {
+            switchCtn.classList.remove("is-gx");
+        }, 1500)
+        switchCtn.classList.toggle("is-txr");
+        switchCircle[0].classList.toggle("is-txr");
+        switchCircle[1].classList.toggle("is-txr");
+
+        switchC1.classList.toggle("is-hidden");
+        switchC2.classList.toggle("is-hidden");
+        aContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-z");
+    }
+    // 点击切换
+    let shell = (e) => {
+        //表单默认提交行为
+        /*for (var i = 0; i < allButtons.length; i++)
+            allButtons[i].addEventListener("click", getButtons);*/
+        for (var i = 0; i < switchBtn.length; i++)
+            switchBtn[i].addEventListener("click", changeForm)
+    }
+    window.addEventListener("load", shell);
+
+</script>
+</html>
